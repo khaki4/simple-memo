@@ -1,0 +1,8 @@
+ios
+android
+.vscode
+.tmp
+__tests__
+node_modules
+src/lib/*
+build
