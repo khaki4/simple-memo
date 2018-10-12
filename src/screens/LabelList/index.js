@@ -5,8 +5,8 @@ import * as fromLabel from '../../reducers/label';
 
 const mapStateToProps = state => {
   return {
-    memosList: state.memo.memosList || [],
-    labelList: state.label.labelsList || [],
+    memosList: state.memo.memosList,
+    labelList: state.label.labelsList,
   };
 };
 

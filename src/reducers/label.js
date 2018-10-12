@@ -1,4 +1,5 @@
 import produce from 'immer';
+import _keyBy from 'lodash/keyBy';
 
 // follow rules of 'https://github.com/erikras/ducks-modular-redux'
 const BASE_PREFIX = 'LABELS/';
@@ -64,11 +65,13 @@ export const failureRemoveMemo = (payload) => ({ type: FAILURE_REMOVE_MEMO, payl
 // helper function
 const _successLabelsList = (_action, _draft) => {
   _draft.labelsList = _action.payload;
+  _draft.labelsListById = _keyBy(_action.payload, '_id');
 }
 
 // reducer
 const initialState = {
   labelsList: [],
+  labelsListById: {},
 };
 const reducer = (state = initialState, action) => {
   return produce(state, draft => {

@@ -1,4 +1,5 @@
 import produce from 'immer';
+import _keyBy from 'lodash/keyBy';
 
 // follow rules of 'https://github.com/erikras/ducks-modular-redux'
 const BASE_PREFIX = 'MEMO/';
@@ -48,11 +49,13 @@ export const failureDeleteMemo = (payload) => ({ type: FAILURE_DELETE_MEMO, payl
 // helper function
 const _successMemosList = (_action, _draft) => {
   _draft.memosList = _action.payload;
+  _draft.memosListById = _keyBy(_action.payload, '_id');
 }
 
 // reducer
 const initialState = {
   memosList: [],
+  memosListById: {},
 };
 const reducer = (state = initialState, action) => {
   return produce(state, draft => {

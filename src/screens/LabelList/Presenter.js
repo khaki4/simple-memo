@@ -9,7 +9,7 @@ const Presenter = props => {
       {props.labelList.map(label => {
         return (
           <div key={label._id}>
-            <Link href={`${label._id}`} to={`${label._id}`}>
+            <Link to={`/${label._id}`}>
               { `${label.title} (${label.memos.length})` }
             </Link>
           </div>
