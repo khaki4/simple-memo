@@ -11,6 +11,8 @@ import {
   getLabelById,
   updateLabel,
   deleteLabel,
+  addMemo,
+  removeMemo,
 } from '../apis/labels';
 
 function* workCreateLabel(action) {
@@ -65,6 +67,28 @@ function* workDeleteLabel(action) {
   } catch (e) {
     console.log('errored at workDeleteLabel -', e);
     yield put(fromLabel.failureDeleteLabel(e))
+  }
+}
+
+function* workAddMemo(action) {
+  try {
+    const { data } = yield call(addMemo, action.payload);
+    console.log('res', data);
+    yield put(fromLabel.successAddMemo(data))
+  } catch (e) {
+    console.log('errored at workAddMemo -', e);
+    yield put(fromLabel.failureAddMemo(e))
+  }
+}
+
+function* workRemoveMemo(action) {
+  try {
+    const { data } = yield call(removeMemo, action.payload);
+    console.log('res', data);
+    yield put(fromLabel.successRemoveMemo(data))
+  } catch (e) {
+    console.log('errored at workRemoveMemo -', e);
+    yield put(fromLabel.failureRemoveMemo(e))
   }
 }
 
@@ -126,6 +150,28 @@ function* watchDeleteLabel() {
   }
 }
 
+function* watchAddMemo() {
+  while (true) {
+    try {
+      const action = yield take(fromLabel.REQUEST_ADD_MEMO);
+      yield fork(workAddMemo, action);
+    } catch (e) {
+      console.log('errored in watchAddMemo -', e.message);
+    }
+  }
+}
+
+function* watchRemoveMemo() {
+  while (true) {
+    try {
+      const action = yield take(fromLabel.REQUEST_REMOVE_MEMO);
+      yield fork(workRemoveMemo, action);
+    } catch (e) {
+      console.log('errored in watchRemoveMemo -', e.message);
+    }
+  }
+}
+
 
 export default [
   watchCreateLabel,
@@ -133,4 +179,6 @@ export default [
   watchLabelById,
   watchUpdateLabel,
   watchDeleteLabel,
+  watchAddMemo,
+  watchRemoveMemo,
 ];
