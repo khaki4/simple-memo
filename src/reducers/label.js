@@ -24,6 +24,14 @@ export const REQUEST_DELETE_LABEL = `${BASE_PREFIX}REQUEST_LABEL_DELETE`;
 export const SUCCESS_DELETE_LABEL = `${BASE_PREFIX}SUCCESS_DELETE_LABEL`;
 export const FAILURE_DELETE_LABEL = `${BASE_PREFIX}FAILURE_DELETE_LABEL`;
 
+export const REQUEST_ADD_MEMO = `${BASE_PREFIX}REQUEST_ADD_MEMO`;
+export const SUCCESS_ADD_MEMO = `${BASE_PREFIX}SUCCESS_ADD_MEMO`;
+export const FAILURE_ADD_MEMO = `${BASE_PREFIX}FAILURE_ADD_MEMO`;
+
+export const REQUEST_REMOVE_MEMO = `${BASE_PREFIX}REQUEST_REMOVE_MEMO`;
+export const SUCCESS_REMOVE_MEMO = `${BASE_PREFIX}SUCCESS_REMOVE_MEMO`;
+export const FAILURE_REMOVE_MEMO = `${BASE_PREFIX}FAILURE_REMOVE_MEMO`;
+
 // Action Creators
 export const requestCreateLabel = (title, content) => ({ type: REQUEST_CREATE_LABEL, payload: { title, content } });
 export const successCreateLabel = (payload) => ({ type: SUCCESS_CREATE_LABEL, payload });
@@ -37,13 +45,21 @@ export const requestLabelById = (id) => ({ type: REQUEST_LABEL_BY_ID, payload: i
 export const successLabelById = (payload) => ({ type: SUCCESS_LABEL_BY_ID, payload });
 export const failureLabelById = (payload) => ({ type: FAILURE_LABEL_BY_ID, payload });
 
-export const requestUpdateLabel = (id, title, content) => ({ type: REQUEST_UPDATE_LABEL, payload: { id, title, content } });
+export const requestUpdateLabel = (id, title) => ({ type: REQUEST_UPDATE_LABEL, payload: { id, title } });
 export const successUpdateLabel = (payload) => ({ type: SUCCESS_UPDATE_LABEL, payload });
 export const failureUpdateLabel = (payload) => ({ type: FAILURE_UPDATE_LABEL, payload });
 
 export const requestDeleteLabel = (id) => ({ type: REQUEST_DELETE_LABEL, payload: id });
 export const successDeleteLabel = (payload) => ({ type: SUCCESS_DELETE_LABEL, payload });
 export const failureDeleteLabel = (payload) => ({ type: FAILURE_DELETE_LABEL, payload });
+
+export const requestAddMemo = (labelId, memoIds) => ({ type: REQUEST_ADD_MEMO, payload: { labelId, memoIds } });
+export const successAddMemo = (payload) => ({ type: SUCCESS_ADD_MEMO, payload });
+export const failureAddMemo = (payload) => ({ type: FAILURE_ADD_MEMO, payload });
+
+export const requestRemoveMemo = (id) => ({ type: REQUEST_REMOVE_MEMO, payload: id });
+export const successRemoveMemo = (payload) => ({ type: SUCCESS_REMOVE_MEMO, payload });
+export const failureRemoveMemo = (payload) => ({ type: FAILURE_REMOVE_MEMO, payload });
 
 // helper function
 const _successLabelsList = (_action, _draft) => {
