@@ -67,7 +67,8 @@
     "react/button-has-type": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "no-lonely-if": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "import/prefer-default-export": "off"
   },
   "globals": {
     "var2": false
