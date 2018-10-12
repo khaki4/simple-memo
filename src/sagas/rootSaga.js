@@ -1,6 +1,7 @@
 import { delay } from 'redux-saga';
 import { call, spawn } from 'redux-saga/effects';
 import memoSaga from './memoSaga';
+import labelSaga from './labelSaga';
 
 const makeRestartable = saga => {
   return function*() {
@@ -23,6 +24,7 @@ const makeRestartable = saga => {
 
 const rootSagas = [
   ...memoSaga,
+  ...labelSaga,
 ].map(makeRestartable);
 
 export default function* root() {

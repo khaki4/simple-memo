@@ -1,0 +1,71 @@
+import produce from 'immer';
+
+// follow rules of 'https://github.com/erikras/ducks-modular-redux'
+const BASE_PREFIX = 'LABELS/';
+
+// Actions
+export const REQUEST_CREATE_LABEL = `${BASE_PREFIX}REQUEST_CREATE_LABEL`;
+export const SUCCESS_CREATE_LABEL = `${BASE_PREFIX}SUCCESS_CREATE_LABEL`;
+export const FAILURE_CREATE_LABEL = `${BASE_PREFIX}FAILURE_CREATE_LABEL`;
+
+export const REQUEST_LABELS_LIST = `${BASE_PREFIX}REQUEST_LABELS_LIST`;
+export const SUCCESS_LABELS_LIST = `${BASE_PREFIX}SUCCESS_LABELS_LIST`;
+export const FAILURE_LABELS_LIST = `${BASE_PREFIX}FAILURE_LABELS_LIST`;
+
+export const REQUEST_LABEL_BY_ID = `${BASE_PREFIX}REQUEST_LABEL_BY_ID`;
+export const SUCCESS_LABEL_BY_ID = `${BASE_PREFIX}SUCCESS_LABEL_BY_ID`;
+export const FAILURE_LABEL_BY_ID = `${BASE_PREFIX}FAILURE_LABEL_BY_ID`;
+
+export const REQUEST_UPDATE_LABEL = `${BASE_PREFIX}REQUEST_UPDATE_LABEL`;
+export const SUCCESS_UPDATE_LABEL = `${BASE_PREFIX}SUCCESS_UPDATE_LABEL`;
+export const FAILURE_UPDATE_LABEL = `${BASE_PREFIX}FAILURE_UPDATE_LABEL`;
+
+export const REQUEST_DELETE_LABEL = `${BASE_PREFIX}REQUEST_LABEL_DELETE`;
+export const SUCCESS_DELETE_LABEL = `${BASE_PREFIX}SUCCESS_DELETE_LABEL`;
+export const FAILURE_DELETE_LABEL = `${BASE_PREFIX}FAILURE_DELETE_LABEL`;
+
+// Action Creators
+export const requestCreateLabel = (title, content) => ({ type: REQUEST_CREATE_LABEL, payload: { title, content } });
+export const successCreateLabel = (payload) => ({ type: SUCCESS_CREATE_LABEL, payload });
+export const failureCreateLabel = (payload) => ({ type: FAILURE_CREATE_LABEL, payload });
+
+export const requestLabelsList = () => ({ type: REQUEST_LABELS_LIST });
+export const successLabelsList = (payload) => ({ type: SUCCESS_LABELS_LIST, payload });
+export const failureLabelsList = (payload) => ({ type: FAILURE_LABELS_LIST, payload });
+
+export const requestLabelById = (id) => ({ type: REQUEST_LABEL_BY_ID, payload: id });
+export const successLabelById = (payload) => ({ type: SUCCESS_LABEL_BY_ID, payload });
+export const failureLabelById = (payload) => ({ type: FAILURE_LABEL_BY_ID, payload });
+
+export const requestUpdateLabel = (id, title, content) => ({ type: REQUEST_UPDATE_LABEL, payload: { id, title, content } });
+export const successUpdateLabel = (payload) => ({ type: SUCCESS_UPDATE_LABEL, payload });
+export const failureUpdateLabel = (payload) => ({ type: FAILURE_UPDATE_LABEL, payload });
+
+export const requestDeleteLabel = (id) => ({ type: REQUEST_DELETE_LABEL, payload: id });
+export const successDeleteLabel = (payload) => ({ type: SUCCESS_DELETE_LABEL, payload });
+export const failureDeleteLabel = (payload) => ({ type: FAILURE_DELETE_LABEL, payload });
+
+// helper function
+const _successLabelsList = (_action, _draft) => {
+  _draft.labelsList = _action.payload;
+}
+
+// reducer
+const initialState = {
+  labelsList: [],
+};
+const reducer = (state = initialState, action) => {
+  return produce(state, draft => {
+    switch (action.type) {
+      case SUCCESS_LABELS_LIST:
+        return _successLabelsList(action, draft);
+      default:
+        return state;
+    }
+  });
+};
+
+// selector
+
+
+export default reducer;
