@@ -2,7 +2,7 @@ import produce from 'immer';
 import _keyBy from 'lodash/keyBy';
 
 // follow rules of 'https://github.com/erikras/ducks-modular-redux'
-const BASE_PREFIX = 'LABELS/';
+const BASE_PREFIX = 'LABEL/';
 
 // Actions
 export const REQUEST_CREATE_LABEL = `${BASE_PREFIX}REQUEST_CREATE_LABEL`;
