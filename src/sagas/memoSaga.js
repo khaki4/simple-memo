@@ -5,6 +5,7 @@ import {
   fork,
 } from 'redux-saga/effects';
 import * as fromMemo from '../reducers/memo';
+import * as fromLabel from '../reducers/label';
 import {
   createMemo,
   getMemos,
@@ -50,10 +51,18 @@ function* workUpdateMemo(action) {
   try {
     const { data } = yield call(updateMemo, action.payload);
     console.log('res', data);
-    yield put(fromMemo.successUpdateMemo(data))
+    yield put(fromMemo.successUpdateMemo(data));
+
+    const updateMemoAction = yield take([fromMemo.SUCCESS_UPDATE_MEMO, fromMemo.FAILURE_UPDATE_MEMO]);
+    if (updateMemoAction.type === fromMemo.SUCCESS_UPDATE_MEMO) {
+      yield put(fromMemo.requestMemosList());
+      yield put(fromLabel.requestLabelsList());
+    } else {
+      yield put(fromMemo.failureUpdateMemo());
+    }
   } catch (e) {
     console.log('errored at workUpdateMemo -', e);
-    yield put(fromMemo.failureUpdateMemo(e))
+    yield put(fromMemo.failureUpdateMemo(e));
   }
 }
 
