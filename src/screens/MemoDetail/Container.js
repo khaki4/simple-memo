@@ -23,11 +23,17 @@ class Container extends PureComponent {
   }
 
   onClickEditMode = () => {
+    // 수정완료 버튼 누르는 시점에서 타이틀 값이 없을 때 업데이트 무시.
+    if (this.state.isEditMode && !this.state.title) return;
+
     this.setState((prevState) => ({ isEditMode: !prevState.isEditMode }), this.updateMemo);
   }
 
   onChangeTitle = (e) => {
-    this.setState({ title: e.target.value });
+    const title = e.target.value;
+    if (title.length > 10) return;
+
+    this.setState({ title });
   }
 
   onChangeContent = (e) => {
@@ -39,6 +45,7 @@ class Container extends PureComponent {
     if (this.state.isEditMode) return;
 
     this.props.requestUpdateMemo(this.props.memoId, this.state.title, this.state.content);
+    this.setState({ title: '', content: '' });
   }
 
   render() {

@@ -45,11 +45,16 @@ class Container extends PureComponent {
   onClickMemoTitleChange = (e, memoId) => {
     e.preventDefault();
 
+    // 이름 변경 완료 누르는 시점에서 타이틀 값이 없다면 요청 무시.
+    if (this.state.nameEditMode[memoId] && !this.state.changedMemoTitle[memoId]) return;
+
+    this.updateMemoTitle(memoId, this.state.changedMemoTitle[memoId]);
     this.setState(
       produce(draft => {
         draft.nameEditMode[memoId] = !draft.nameEditMode[memoId];
+        draft.changedMemoTitle[memoId] = '';
       }),
-      this.updateMemoTitle(memoId, this.state.changedMemoTitle[memoId])
+
     );
   }
 
