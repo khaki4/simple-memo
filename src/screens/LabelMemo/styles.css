@@ -1,9 +1,28 @@
-.label-list {
+.label-memo {
     width: 300px;
-    padding: 0 40px;
     border: 1px solid #666;
 }
-.label-list h3 {
+.label-memo h3 {
     display: inline-block;
     margin-right: 10px;
+    padding: 0 40px;
+}
+.label-memo .card {
+    padding: 10px 20px;
+    border: 1px solid gray;
+    border-left: 0;
+    border-right: 0;
+}
+
+.label-memo input {
+    margin-right: 10px;
+}
+.label-memo .top {
+    display: inline-block;
+    position: relative;
+    width: 230px;
+}
+.label-memo .date {
+    position: absolute;
+    right: 0;
 }
