@@ -7,7 +7,6 @@ import './styles.css';
 
 const Presenter = props => {
   const labelMemo = props.labelList[props.labelId] || {};
-  console.log(labelMemo)
   return (
     <div className="label-memo">
       <h3>{labelMemo.title}</h3>
@@ -17,7 +16,7 @@ const Presenter = props => {
             <Link to={`/${props.labelId}/${memo._id}/`}>
               <h4>
                 {memo.title}
-                <span>{moment(memo.createdAt).format("YYYY. MM. DD.")}</span>
+                <span>{moment(memo.updatedAt).format("YYYY. MM. DD.")}</span>
               </h4>
               <p>{ellipsisText(memo.content)}</p>
             </Link>

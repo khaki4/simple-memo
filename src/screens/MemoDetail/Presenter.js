@@ -9,7 +9,7 @@ const Presenter = props => {
   return (
     <div className="label-detail">
       <h1>{memoDetail.title}</h1>
-      <p>{moment(memoDetail.createdAt).format("YYYY. MM. DD.")}</p>
+      <p>{moment(memoDetail.updatedAt).format("YYYY. MM. DD.")}</p>
       <p>{memoDetail.content}</p>
     </div>
   );
