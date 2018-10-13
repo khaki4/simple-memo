@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     requestLabelById: (labelId) => {
       dispatch(fromLabel.requestLabelById(labelId));
     },
-    requestUpdateMemo: (labelId, title) => {
-      dispatch(fromMemo.requestUpdateMemo(labelId, title));
+    requestUpdateMemo: (memoId, title) => {
+      dispatch(fromMemo.requestUpdateMemo(memoId, title));
     },
     requestRemoveMemo: (memoIds) => {
       dispatch(fromLabel.requestRemoveMemo(ownProps.match.params.labelId, memoIds));

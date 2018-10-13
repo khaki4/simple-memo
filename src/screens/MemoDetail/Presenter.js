@@ -9,12 +9,22 @@ const Presenter = props => {
   return (
     <div className="label-detail">
       <div className="top">
-        <h1>{memoDetail.title}</h1>
+        {
+          props.isEditMode ?
+            <input type="text" placeholder="제목을 입력하세요" onChange={props.onChangeTitle} value={props.title} /> :
+            <h3>{memoDetail.title}</h3>
+        }
 
-        <button onClick={props.onClickDeleteMemo}>삭제</button>
+
+        <button onClick={props.onClickDeleteMemo} className="delete">삭제</button>
+        <button onClick={props.onClickEditMode} className="edit">{ props.isEditMode ? '수정완료' : '수정' }</button>
         <p>{`메모 수정일 ${moment(memoDetail.updatedAt).format("YYYY. MM. DD.")}`}</p>
       </div>
-      <p>{memoDetail.content}</p>
+      {
+        props.isEditMode ?
+          <textarea className="editModeContent" onChange={props.onChangeContent} value={props.content} /> :
+          <p>{memoDetail.content}</p>
+      }
     </div>
   );
 };

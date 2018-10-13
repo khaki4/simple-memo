@@ -10,11 +10,18 @@ const getLabelMemoClassName = (selectedMemoId, memoId) => {
 };
 
 const Presenter = props => {
-  const labelMemo = props.labelList[props.labelId] || {};
+  const labelMemo = props.labelList[props.labelId];
+  if (!labelMemo) return <div />;
+
   return (
     <div className="label-memo">
       <h3>{labelMemo.title}</h3>
       <button onClick={props.onClickDeleteSeletedLabels}>선택 메모 삭제</button>
+      <div>
+        <button>
+          메모 추가
+        </button>
+      </div>
       {labelMemo.memos && labelMemo.memos.map(memo => {
         return (
           <div key={memo._id} className={getLabelMemoClassName(props.selectedMemoId, memo._id)}>

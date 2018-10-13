@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     requestDeleteMemo: (memoId) => {
       dispatch(fromMemo.requestDeleteMemo(memoId));
     },
-    requestUpdateMemo: (labelId, title, content) => {
-      dispatch(fromMemo.requestUpdateMemo(labelId, title, content));
+    requestUpdateMemo: (memoId, title, content) => {
+      dispatch(fromMemo.requestUpdateMemo(memoId, title, content));
     },
   };
 };
