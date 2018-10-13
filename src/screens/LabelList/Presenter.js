@@ -35,7 +35,7 @@ const Presenter = props => {
                 className={getLabelClassName(props.selectedLabelId, label._id)}
               >
                 <span className={label._id}>
-                { `${label.title} (${label.memos.length})` }
+                  { `${label.title} (${label.memos.length})` }
                 </span>
               </div>
             </Link>
