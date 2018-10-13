@@ -51,6 +51,9 @@ class Container extends PureComponent {
   }
 
   onClickDeleteSeletedLabels = () => {
+    // 체크된 메모가 없을경우 요청 무시.
+    if ([...this.checkedMemoIds].length < 1) return;
+
     this.props.requestRemoveMemo([...this.checkedMemoIds]);
   }
 

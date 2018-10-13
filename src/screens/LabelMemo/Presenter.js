@@ -10,17 +10,18 @@ const Presenter = props => {
   return (
     <div className="label-memo">
       <h3>{labelMemo.title}</h3>
-      <button onClick={props.onClickDeleteSeletedLabels}>선택 라벨 삭제</button>
+      <button onClick={props.onClickDeleteSeletedLabels}>선택 메모 삭제</button>
       {labelMemo.memos && labelMemo.memos.map(memo => {
         return (
           <div key={memo._id} className="card">
+            <input
+              className="checkBoxInput"
+              name="isSelectedMemo"
+              type="checkbox"
+              checked={props.checkedMemoIds.includes(memo._id)}
+              onChange={() => props.onChangeCheckedMemoIds(memo._id)}
+            />
             <form onSubmit={(e) => props.onClickMemoTitleChange(e, memo._id)}>
-              <input
-                name="isSelectedMemo"
-                type="checkbox"
-                checked={props.checkedMemoIds.includes(memo._id)}
-                onChange={() => props.onChangeCheckedMemoIds(memo._id)}
-              />
               <Link to={`/${props.labelId}/${memo._id}/`}>
                 <div className="top">
                   <span>
@@ -37,8 +38,8 @@ const Presenter = props => {
                     }
                     <span className="date">{moment(memo.updatedAt).format("YYYY. MM. DD.")}</span>
                   </span>
+                  <p>{ellipsisText(memo.content)}</p>
                 </div>
-                <p>{ellipsisText(memo.content)}</p>
               </Link>
               <button onClick={(e) => props.onClickMemoTitleChange(e, memo._id)}>
                 {props.nameEditMode[memo._id] ? '이름변경완료' : '이름변경'}
