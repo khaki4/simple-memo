@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import LabelList from './screens/LabelList';
 import LabelMemo from './screens/LabelMemo';
 import MemoDetail from './screens/MemoDetail';
+import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router>
-          <>
+          <div className="simple-memo">
             <LabelList />
             <Route
               exact
@@ -21,7 +22,7 @@ class App extends Component {
               path="/:labelId/:memoId"
               component={MemoDetail}
             />
-          </>
+          </div>
         </Router>
       </div>
     );

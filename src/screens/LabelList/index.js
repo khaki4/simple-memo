@@ -21,8 +21,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     requestLabelsList: () => {
       dispatch(fromLabel.requestLabelsList())
     },
-    requestCreateLabel: (title, content) => {
-      dispatch(fromLabel.requestCreateLabel(title, content))
+    requestCreateLabel: (title) => {
+      dispatch(fromLabel.requestCreateLabel(title))
     },
     requestAddMemo: (labelId, memoIds) => {
       dispatch(fromLabel.requestAddMemo(labelId, memoIds))

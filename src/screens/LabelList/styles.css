@@ -1,3 +1,5 @@
-.label-memo {
-    border: 1px solid red;
+.label-list {
+    height: auto;
+    padding: 0 40px;
+    border: 1px solid #333;
 }

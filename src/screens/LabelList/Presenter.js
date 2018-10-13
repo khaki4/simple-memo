@@ -4,13 +4,26 @@ import './styles.css';
 
 const Presenter = props => {
   return (
-    <div>
-      <div>{`전체메모(${props.memosList.length})`}</div>
+    <div className="label-list">
+      <div>
+        <h2>{`전체메모(${props.memosList.length})`}</h2>
+      </div>
+      <div>
+        <form onSubmit={props.onClickCreateLabel}>
+          <input
+            type="text"
+            placeholder="라벨을 입력해주세요"
+            onChange={props.onChangeLabelTitle}
+            value={props.labelTitle}
+          />
+          <button onClick={props.onClickCreateLabel}>라벨 추가하기</button>
+        </form>
+      </div>
       {props.labelList.map(label => {
         return (
           <div key={label._id}>
             <Link to={`/${label._id}`}>
-              { `${label.title} (${label.memos.length})` }
+              <span>{ `${label.title} (${label.memos.length})` }</span>
             </Link>
           </div>
         );

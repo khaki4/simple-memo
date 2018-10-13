@@ -18,22 +18,22 @@ import {
 function* workCreateLabel(action) {
   try {
     const { data } = yield call(createLabel, action.payload);
-    console.log('res', data);
-    yield put(fromLabel.successCreateLabel(data))
+    console.log('successCreateLabel', data);
+    yield put(fromLabel.successCreateLabel(data));
   } catch (e) {
     console.log('errored at workCreateLabel -', e);
-    yield put(fromLabel.failureCreateLabel(e))
+    yield put(fromLabel.failureCreateLabel(e));
   }
 }
 
 function* workLabelsList(action) {
   try {
     const { data } = yield call(getLabels);
-    console.log('res', data);
-    yield put(fromLabel.successLabelsList(data))
+    console.log('success workLabelsList:', data);
+    yield put(fromLabel.successLabelsList(data));
   } catch (e) {
     console.log('errored at workLabelsList -', e);
-    yield put(fromLabel.failureLabelsList(e))
+    yield put(fromLabel.failureLabelsList(e));
   }
 }
 
@@ -41,10 +41,10 @@ function* workLabelById(action) {
   try {
     const { data } = yield call(getLabelById, action.payload);
     console.log('res', data);
-    yield put(fromLabel.successLabelById(data))
+    yield put(fromLabel.successLabelById(data));
   } catch (e) {
     console.log('errored at workLabelById -', e);
-    yield put(fromLabel.failureLabelById(e))
+    yield put(fromLabel.failureLabelById(e));
   }
 }
 
@@ -52,7 +52,7 @@ function* workUpdateLabel(action) {
   try {
     const { data } = yield call(updateLabel, action.payload);
     console.log('res', data);
-    yield put(fromLabel.successUpdateLabel(data))
+    yield put(fromLabel.successUpdateLabel(data));
   } catch (e) {
     console.log('errored at workUpdateLabel -', e);
     yield put(fromLabel.failureUpdateLabel(e))
@@ -63,10 +63,10 @@ function* workDeleteLabel(action) {
   try {
     const { data } = yield call(deleteLabel, action.payload);
     console.log('res', data);
-    yield put(fromLabel.successDeleteLabel(data))
+    yield put(fromLabel.successDeleteLabel(data));
   } catch (e) {
     console.log('errored at workDeleteLabel -', e);
-    yield put(fromLabel.failureDeleteLabel(e))
+    yield put(fromLabel.failureDeleteLabel(e));
   }
 }
 
@@ -74,10 +74,10 @@ function* workAddMemo(action) {
   try {
     const { data } = yield call(addMemo, action.payload);
     console.log('res', data);
-    yield put(fromLabel.successAddMemo(data))
+    yield put(fromLabel.successAddMemo(data));
   } catch (e) {
     console.log('errored at workAddMemo -', e);
-    yield put(fromLabel.failureAddMemo(e))
+    yield put(fromLabel.failureAddMemo(e));
   }
 }
 

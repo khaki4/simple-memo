@@ -66,7 +66,11 @@ export const failureRemoveMemo = (payload) => ({ type: FAILURE_REMOVE_MEMO, payl
 const _successLabelsList = (_action, _draft) => {
   _draft.labelsList = _action.payload;
   _draft.labelsListById = _keyBy(_action.payload, '_id');
-}
+};
+const _successCreateLabel = (_action, _draft) => {
+  _draft.labelsList.push(_action.payload);
+  _draft.labelsListById = _keyBy(_draft.labelsList, '_id');
+};
 
 // reducer
 const initialState = {
@@ -78,6 +82,8 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
       case SUCCESS_LABELS_LIST:
         return _successLabelsList(action, draft);
+      case SUCCESS_CREATE_LABEL:
+        return _successCreateLabel(action, draft);
       default:
         return state;
     }
