@@ -33,6 +33,8 @@ export const REQUEST_REMOVE_MEMO = `${BASE_PREFIX}REQUEST_REMOVE_MEMO`;
 export const SUCCESS_REMOVE_MEMO = `${BASE_PREFIX}SUCCESS_REMOVE_MEMO`;
 export const FAILURE_REMOVE_MEMO = `${BASE_PREFIX}FAILURE_REMOVE_MEMO`;
 
+export const SET_SELECTED_LABEL_ID = `${BASE_PREFIX}SET_SELECTED_LABEL_ID`;
+
 // Action Creators
 export const requestCreateLabel = (title, content) => ({ type: REQUEST_CREATE_LABEL, payload: { title, content } });
 export const successCreateLabel = (payload) => ({ type: SUCCESS_CREATE_LABEL, payload });
@@ -62,6 +64,8 @@ export const requestRemoveMemo = (id) => ({ type: REQUEST_REMOVE_MEMO, payload: 
 export const successRemoveMemo = (payload) => ({ type: SUCCESS_REMOVE_MEMO, payload });
 export const failureRemoveMemo = (payload) => ({ type: FAILURE_REMOVE_MEMO, payload });
 
+export const setSelectedLabelId = (labelId) => ({ type: SET_SELECTED_LABEL_ID, payload: labelId });
+
 // helper function
 const _successLabelsList = (_action, _draft) => {
   _draft.labelsList = _action.payload;
@@ -71,11 +75,15 @@ const _successCreateLabel = (_action, _draft) => {
   _draft.labelsList.push(_action.payload);
   _draft.labelsListById = _keyBy(_draft.labelsList, '_id');
 };
+const _setSelectedLabelId = (_action, _draft) => {
+  _draft.selectedLabelId = _action.payload;
+};
 
 // reducer
 const initialState = {
   labelsList: [],
   labelsListById: {},
+  selectedLabelId: '',
 };
 const reducer = (state = initialState, action) => {
   return produce(state, draft => {
@@ -84,6 +92,8 @@ const reducer = (state = initialState, action) => {
         return _successLabelsList(action, draft);
       case SUCCESS_CREATE_LABEL:
         return _successCreateLabel(action, draft);
+      case SET_SELECTED_LABEL_ID:
+        return _setSelectedLabelId(action, draft);
       default:
         return state;
     }

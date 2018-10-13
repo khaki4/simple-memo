@@ -2,6 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
+const getLabelClassName = (selectedLabelId, labelId) => {
+  const result = selectedLabelId === labelId ? 'selected' : '';
+  return result;
+};
+
 const Presenter = props => {
   return (
     <div className="label-list">
@@ -21,9 +26,18 @@ const Presenter = props => {
       </div>
       {props.labelList.map(label => {
         return (
-          <div key={label._id}>
+          <div
+            key={label._id}
+          >
             <Link to={`/${label._id}`}>
-              <span>{ `${label.title} (${label.memos.length})` }</span>
+              <div
+                onClick={() => props.onClickLabel(label._id)}
+                className={getLabelClassName(props.selectedLabelId, label._id)}
+              >
+                <span className={label._id}>
+                { `${label.title} (${label.memos.length})` }
+                </span>
+              </div>
             </Link>
           </div>
         );

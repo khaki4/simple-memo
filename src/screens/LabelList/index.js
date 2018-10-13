@@ -7,6 +7,7 @@ const mapStateToProps = state => {
   return {
     memosList: state.memo.memosList,
     labelList: state.label.labelsList,
+    selectedLabelId: state.label.selectedLabelId,
   };
 };
 
@@ -26,7 +27,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     requestAddMemo: (labelId, memoIds) => {
       dispatch(fromLabel.requestAddMemo(labelId, memoIds))
-    }
+    },
+    setSelectedLabelId: (labelId) => {
+      dispatch(fromLabel.setSelectedLabelId(labelId))
+    },
   };
 };
 

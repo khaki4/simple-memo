@@ -3,3 +3,6 @@
     padding: 0 40px;
     border: 1px solid #333;
 }
+.selected {
+    border: 3px solid green;
+}
