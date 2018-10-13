@@ -70,7 +70,7 @@ function* workDeleteLabel(action) {
   }
 }
 
-function* workAddMemo(action) {
+export function* workAddMemo(action) {
   try {
     const { data } = yield call(addMemo, action.payload);
     console.log('res', data);

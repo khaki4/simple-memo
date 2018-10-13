@@ -22,7 +22,7 @@ const Presenter = props => {
       </div>
       {
         props.isEditMode ?
-          <textarea className="editModeContent" onChange={props.onChangeContent} value={props.content} /> :
+          <textarea className="editModeContent" onChange={props.onChangeContent} value={props.content} placeholder="내용을 입력하세요" /> :
           <p>{memoDetail.content}</p>
       }
     </div>

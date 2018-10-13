@@ -6,6 +6,7 @@ import {
 } from 'redux-saga/effects';
 import * as fromMemo from '../reducers/memo';
 import * as fromLabel from '../reducers/label';
+import { workAddMemo } from './labelSaga';
 import {
   createMemo,
   getMemos,
@@ -77,6 +78,37 @@ function* workDeleteMemo(action) {
   }
 }
 
+function* createAndAddMemoFlow(action) {
+  try {
+    const { labelId, title, content } = action.payload;
+
+    // 메모 생성 플로우
+    const createMemoTask = yield fork(workCreateMemo, { payload: { title, content } });
+    const createMemoAction = yield take([fromMemo.SUCCESS_CREATE_MEMO, fromMemo.FAILURE_CREATE_MEMO]);
+    if (createMemoAction.type === fromMemo.FAILURE_CREATE_MEMO) {
+      yield createMemoTask.cancel();
+      return;
+    }
+
+    // 메모 생성 이후 라벨에 추가 하는 플로우
+    const memoId = createMemoAction.payload._id;
+    const addMemoTask = yield fork(workAddMemo, { payload: { labelId, memoIds: [memoId] } });
+    const addMemoAction = yield take([fromLabel.SUCCESS_ADD_MEMO, fromLabel.FAILURE_ADD_MEMO]);
+    if (addMemoAction.type === fromLabel.FAILURE_ADD_MEMO) {
+      yield addMemoTask.cancel();
+      return;
+    }
+
+    yield put(fromMemo.requestMemosList());
+    yield put(fromLabel.requestLabelsList());
+
+    yield put(fromMemo.successCreateAndAddMemo());
+  } catch (e) {
+    console.log('errored at createAndAddMemoFlow -', e);
+    yield put(fromMemo.failureCreateAndAddMemo())
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////          watch sagas           ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -135,6 +167,17 @@ function* watchDeleteMemo() {
   }
 }
 
+function* watchCreateAndAddMemo() {
+  while (true) {
+    try {
+      const action = yield take(fromMemo.REQUEST_CREATE_AND_ADD_MEMO);
+      yield fork(createAndAddMemoFlow, action);
+    } catch (e) {
+      console.log('errored in watchCreateAndAddMemo -', e.message);
+    }
+  }
+}
+
 
 export default [
   watchCreateMemo,
@@ -142,4 +185,5 @@ export default [
   watchMemoById,
   watchUpdateMemo,
   watchDeleteMemo,
+  watchCreateAndAddMemo,
 ];

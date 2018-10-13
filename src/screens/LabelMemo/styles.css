@@ -42,3 +42,9 @@
     position: absolute;
     right: 0;
 }
+.label-memo .add-memo {
+    padding: 0 20px;
+    text-align: center;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}

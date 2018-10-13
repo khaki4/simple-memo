@@ -25,6 +25,10 @@ export const REQUEST_DELETE_MEMO = `${BASE_PREFIX}REQUEST_MEMO_DELETE`;
 export const SUCCESS_DELETE_MEMO = `${BASE_PREFIX}SUCCESS_DELETE_MEMO`;
 export const FAILURE_DELETE_MEMO = `${BASE_PREFIX}FAILURE_DELETE_MEMO`;
 
+export const REQUEST_CREATE_AND_ADD_MEMO = `${BASE_PREFIX}REQUEST_CREATE_AND_ADD_MEMO`;
+export const SUCCESS_CREATE_AND_ADD_MEMO = `${BASE_PREFIX}SUCCESS_CREATE_AND_ADD_MEMO`;
+export const FAILURE_CREATE_AND_ADD_MEMO = `${BASE_PREFIX}FAILURE_CREATE_AND_ADD_MEMO`;
+
 export const SET_CHECKED_MEMOS_IDS = `${BASE_PREFIX}SET_CHECKED_MEMOS_IDS`;
 export const SET_SELECTED_MEMOS_ID = `${BASE_PREFIX}SET_SELECTED_MEMOS_ID`;
 
@@ -48,6 +52,10 @@ export const failureUpdateMemo = (payload) => ({ type: FAILURE_UPDATE_MEMO, payl
 export const requestDeleteMemo = (id) => ({ type: REQUEST_DELETE_MEMO, payload: id });
 export const successDeleteMemo = (payload) => ({ type: SUCCESS_DELETE_MEMO, payload });
 export const failureDeleteMemo = (payload) => ({ type: FAILURE_DELETE_MEMO, payload });
+
+export const requestCreateAndAddMemo = (labelId, title, content) => ({ type: REQUEST_CREATE_AND_ADD_MEMO, payload: { labelId, title, content } });
+export const successCreateAndAddMemo = (payload) => ({ type: SUCCESS_CREATE_AND_ADD_MEMO, payload });
+export const failureCreateAndAddMemo = (payload) => ({ type: FAILURE_CREATE_AND_ADD_MEMO, payload });
 
 export const setCheckedMemosIds = (payload) => ({ type: SET_CHECKED_MEMOS_IDS, payload });
 export const setSelectedMemoId = (memoId) => ({ type: SET_SELECTED_MEMOS_ID, payload: memoId });

@@ -4,6 +4,7 @@ import history from './history';
 import LabelList from './screens/LabelList';
 import LabelMemo from './screens/LabelMemo';
 import MemoDetail from './screens/MemoDetail';
+import MemoCreate from './screens/MemoCreate';
 import './App.css';
 
 class App extends Component {
@@ -22,6 +23,11 @@ class App extends Component {
               exact
               path="/:labelId/:memoId"
               component={MemoDetail}
+            />
+            <Route
+              exact
+              path="/:labelId/create-memo/"
+              component={MemoCreate}
             />
           </div>
         </Router>
