@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     requestUpdateMemo: (labelId, title) => {
       dispatch(fromMemo.requestUpdateMemo(labelId, title))
     },
+    requestRemoveMemo: (memoIds) => {
+      dispatch(fromLabel.requestRemoveMemo(ownProps.match.params.labelId, memoIds))
+    },
   };
 };
 

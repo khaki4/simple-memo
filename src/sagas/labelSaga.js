@@ -14,6 +14,7 @@ import {
   addMemo,
   removeMemo,
 } from '../apis/labels';
+import * as fromMemo from '../reducers/memo';
 
 function* workCreateLabel(action) {
   try {
@@ -61,9 +62,8 @@ function* workUpdateLabel(action) {
 
 function* workDeleteLabel(action) {
   try {
-    const { data } = yield call(deleteLabel, action.payload);
-    console.log('res', data);
-    yield put(fromLabel.successDeleteLabel(data));
+    const res = yield call(deleteLabel, action.payload);
+    yield put(fromLabel.successDeleteLabel());
   } catch (e) {
     console.log('errored at workDeleteLabel -', e);
     yield put(fromLabel.failureDeleteLabel(e));
@@ -83,9 +83,11 @@ function* workAddMemo(action) {
 
 function* workRemoveMemo(action) {
   try {
-    const { data } = yield call(removeMemo, action.payload);
-    console.log('res', data);
-    yield put(fromLabel.successRemoveMemo(data))
+    const res = yield call(removeMemo, action.payload);
+    yield put(fromLabel.successRemoveMemo());
+
+    yield put(fromMemo.requestMemosList());
+    yield put(fromLabel.requestLabelsList());
   } catch (e) {
     console.log('errored at workRemoveMemo -', e);
     yield put(fromLabel.failureRemoveMemo(e))

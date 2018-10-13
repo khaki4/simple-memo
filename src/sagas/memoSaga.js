@@ -53,13 +53,8 @@ function* workUpdateMemo(action) {
     console.log('res', data);
     yield put(fromMemo.successUpdateMemo(data));
 
-    const updateMemoAction = yield take([fromMemo.SUCCESS_UPDATE_MEMO, fromMemo.FAILURE_UPDATE_MEMO]);
-    if (updateMemoAction.type === fromMemo.SUCCESS_UPDATE_MEMO) {
-      yield put(fromMemo.requestMemosList());
-      yield put(fromLabel.requestLabelsList());
-    } else {
-      yield put(fromMemo.failureUpdateMemo());
-    }
+    yield put(fromMemo.requestMemosList());
+    yield put(fromLabel.requestLabelsList());
   } catch (e) {
     console.log('errored at workUpdateMemo -', e);
     yield put(fromMemo.failureUpdateMemo(e));

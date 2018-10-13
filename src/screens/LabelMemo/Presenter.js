@@ -10,6 +10,7 @@ const Presenter = props => {
   return (
     <div className="label-list">
       <h3>{labelMemo.title}</h3>
+      <button onClick={props.onClickDeleteSeletedLabels}>선택 라벨 삭제</button>
       {labelMemo.memos && labelMemo.memos.map(memo => {
         return (
           <div key={memo._id}>

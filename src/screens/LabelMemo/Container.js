@@ -50,6 +50,10 @@ class Container extends PureComponent {
     );
   }
 
+  onClickDeleteSeletedLabels = () => {
+    this.props.requestRemoveMemo([...this.checkedMemoIds]);
+  }
+
   updateMemoTitle = (memoId, changedMemoTitle) => {
     this.props.requestUpdateMemo(memoId, changedMemoTitle);
   }
@@ -59,9 +63,10 @@ class Container extends PureComponent {
       <Presenter
         {...this.props}
         {...this.state}
+        onChangeTitle={this.onChangeTitle}
         onChangeCheckedMemoIds={this.onChangeCheckedMemoIds}
         onClickMemoTitleChange={this.onClickMemoTitleChange}
-        onChangeTitle={this.onChangeTitle}
+        onClickDeleteSeletedLabels={this.onClickDeleteSeletedLabels}
       />
     );
   }

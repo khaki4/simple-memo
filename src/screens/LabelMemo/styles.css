@@ -1,0 +1,9 @@
+.label-list {
+    width: 300px;
+    padding: 0 40px;
+    border: 1px solid #666;
+}
+.label-list h3 {
+    display: inline-block;
+    margin-right: 10px;
+}

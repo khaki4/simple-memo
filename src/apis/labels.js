@@ -7,4 +7,6 @@ export const getLabelById = (id) => axios.get(`${BASE_URL}labels/${id}`);
 export const updateLabel = ({ id, title }) => axios.put(`${BASE_URL}labels/${id}`, { title });
 export const deleteLabel = (id) => axios.delete(`${BASE_URL}labels/${id}`);
 export const addMemo = ({ labelId, memoIds = [] }) => axios.post(`${BASE_URL}labels/${labelId}/memos`, { memoIds });
-export const removeMemo = (id) => axios.delete(`${BASE_URL}labels/${id}/memos`);
+export const removeMemo = ({ labelId, memoIds }) => axios.delete(`${BASE_URL}labels/${labelId}/memos`, {
+  data: { memoIds },
+});

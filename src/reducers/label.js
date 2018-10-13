@@ -60,7 +60,7 @@ export const requestAddMemo = (labelId, memoIds) => ({ type: REQUEST_ADD_MEMO, p
 export const successAddMemo = (payload) => ({ type: SUCCESS_ADD_MEMO, payload });
 export const failureAddMemo = (payload) => ({ type: FAILURE_ADD_MEMO, payload });
 
-export const requestRemoveMemo = (id) => ({ type: REQUEST_REMOVE_MEMO, payload: id });
+export const requestRemoveMemo = (labelId, memoIds) => ({ type: REQUEST_REMOVE_MEMO, payload: { labelId, memoIds } });
 export const successRemoveMemo = (payload) => ({ type: SUCCESS_REMOVE_MEMO, payload });
 export const failureRemoveMemo = (payload) => ({ type: FAILURE_REMOVE_MEMO, payload });
 
