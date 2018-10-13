@@ -16,7 +16,7 @@ const Presenter = props => {
   return (
     <div className="label-memo">
       <h3>{labelMemo.title}</h3>
-      <button onClick={props.onClickDeleteSeletedLabels}>선택 메모 삭제</button>
+      <button onClick={props.onClickDeleteSeletedLabels}>선택 메모 라벨에서 제외</button>
       <Link to={`/${props.labelId}/create-memo/`}>
         <div className="add-memo">
           <h4>메모 추가</h4>
