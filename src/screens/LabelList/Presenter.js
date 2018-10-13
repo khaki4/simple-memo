@@ -29,7 +29,7 @@ const Presenter = props => {
           <div
             key={label._id}
           >
-            <Link to={`/${label._id}`}>
+            <Link to={`/labels/${label._id}`}>
               <div
                 className={getLabelClassName(props.selectedLabelId, label._id)}
               >

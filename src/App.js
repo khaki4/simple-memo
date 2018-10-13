@@ -15,18 +15,17 @@ class App extends Component {
           <div className="simple-memo">
             <LabelList />
             <Route
-              exact
-              path="/:labelId/:memoId?"
+              path="/labels/:labelId/"
               component={LabelMemo}
             />
             <Route
               exact
-              path="/:labelId/:memoId"
+              path="/labels/:labelId/memos/:memoId"
               component={MemoDetail}
             />
             <Route
               exact
-              path="/:labelId/create-memo/"
+              path="/labels/:labelId/memos/create"
               component={MemoCreate}
             />
           </div>

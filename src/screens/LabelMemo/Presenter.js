@@ -17,7 +17,7 @@ const Presenter = props => {
     <div className="label-memo">
       <h3>{labelMemo.title}</h3>
       <button onClick={props.onClickDeleteSeletedLabels}>선택 메모 라벨에서 제외</button>
-      <Link to={`/${props.labelId}/create-memo/`}>
+      <Link to={`/labels/${props.labelId}/memos/create`}>
         <div className="add-memo">
           <h4>메모 추가</h4>
         </div>
@@ -33,7 +33,7 @@ const Presenter = props => {
               onChange={() => props.onChangeCheckedMemoIds(memo._id)}
             />
             <form onSubmit={(e) => props.onClickMemoTitleChange(e, memo._id)}>
-              <Link to={`/${props.labelId}/${memo._id}/`}>
+              <Link to={`/labels/${props.labelId}/memos/${memo._id}/`}>
                 <div className="top">
                   <span>
                     {
