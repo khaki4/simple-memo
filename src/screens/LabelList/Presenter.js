@@ -31,7 +31,6 @@ const Presenter = props => {
           >
             <Link to={`/${label._id}`}>
               <div
-                onClick={() => props.onClickLabel(label._id)}
                 className={getLabelClassName(props.selectedLabelId, label._id)}
               >
                 <span className={label._id}>

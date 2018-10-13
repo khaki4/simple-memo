@@ -41,7 +41,6 @@ class Container extends PureComponent {
         {...this.state}
         onClickCreateLabel={this.onClickCreateLabel}
         onChangeLabelTitle={this.onChangeLabelTitle}
-        onClickLabel={this.props.setSelectedLabelId}
       />
     );
   }

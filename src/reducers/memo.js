@@ -26,6 +26,7 @@ export const SUCCESS_DELETE_MEMO = `${BASE_PREFIX}SUCCESS_DELETE_MEMO`;
 export const FAILURE_DELETE_MEMO = `${BASE_PREFIX}FAILURE_DELETE_MEMO`;
 
 export const SET_CHECKED_MEMOS_IDS = `${BASE_PREFIX}SET_CHECKED_MEMOS_IDS`;
+export const SET_SELECTED_MEMOS_ID = `${BASE_PREFIX}SET_SELECTED_MEMOS_ID`;
 
 // Action Creators
 export const requestCreateMemo = (title, content) => ({ type: REQUEST_CREATE_MEMO, payload: { title, content } });
@@ -48,22 +49,27 @@ export const requestDeleteMemo = (id) => ({ type: REQUEST_DELETE_MEMO, payload: 
 export const successDeleteMemo = (payload) => ({ type: SUCCESS_DELETE_MEMO, payload });
 export const failureDeleteMemo = (payload) => ({ type: FAILURE_DELETE_MEMO, payload });
 
-export const setCheckedMemosIds = (payload) => ({ type: FAILURE_DELETE_MEMO, payload });
+export const setCheckedMemosIds = (payload) => ({ type: SET_CHECKED_MEMOS_IDS, payload });
+export const setSelectedMemoId = (memoId) => ({ type: SET_SELECTED_MEMOS_ID, payload: memoId });
 
 // helper function
 const _successMemosList = (_action, _draft) => {
   _draft.memosList = _action.payload;
   _draft.memosListById = _keyBy(_action.payload, '_id');
-}
+};
 const _setCheckedMemosIds = (_action, _draft) => {
   _draft.checkedMemoIds = _action.payload;
-}
+};
+const _setSelectedMemoId = (_action, _draft) => {
+  _draft.selectedMemoId = _action.payload;
+};
 
 // reducer
 const initialState = {
   memosList: [],
   memosListById: {},
   checkedMemoIds: [],
+  selectedMemoId: '',
 };
 const reducer = (state = initialState, action) => {
   return produce(state, draft => {
@@ -72,6 +78,8 @@ const reducer = (state = initialState, action) => {
         return _successMemosList(action, draft);
       case SET_CHECKED_MEMOS_IDS:
         return _setCheckedMemosIds(action, draft);
+      case SET_SELECTED_MEMOS_ID:
+        return _setSelectedMemoId(action, draft);
       default:
         return state;
     }

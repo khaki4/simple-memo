@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { ellipsisText } from '../../util/textUtil';
 import './styles.css';
 
+const getLabelMemoClassName = (selectedMemoId, memoId) => {
+  const result = selectedMemoId === memoId ? 'card selected' : 'card';
+  return result;
+};
 
 const Presenter = props => {
   const labelMemo = props.labelList[props.labelId] || {};
@@ -13,7 +17,7 @@ const Presenter = props => {
       <button onClick={props.onClickDeleteSeletedLabels}>선택 메모 삭제</button>
       {labelMemo.memos && labelMemo.memos.map(memo => {
         return (
-          <div key={memo._id} className="card">
+          <div key={memo._id} className={getLabelMemoClassName(props.selectedMemoId, memo._id)}>
             <input
               className="checkBoxInput"
               name="isSelectedMemo"

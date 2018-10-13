@@ -1,0 +1,22 @@
+.label-detail {
+    min-width: 300px;
+    border: 1px solid #999;
+}
+.label-detail .top {
+    position: relative;
+    height: 70px;
+    padding: 0 40px;
+    border-bottom: 1px solid #999;
+}
+.label-detail .top p {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    margin: 0;
+    padding: 0;
+}
+.label-detail button {
+    position: absolute;
+    top: 0;
+    right: 5px;
+}

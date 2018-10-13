@@ -17,9 +17,12 @@ class Container extends PureComponent {
     this.init();
   }
 
+  componentDidUpdate() {
+    this.setActiveItems();
+  }
 
   init = () => {
-
+    this.setActiveItems();
   }
 
   onChangeCheckedMemoIds = (memoId) => {
@@ -57,7 +60,14 @@ class Container extends PureComponent {
     this.props.requestRemoveMemo([...this.checkedMemoIds]);
   }
 
+  setActiveItems = () => {
+    this.props.setSelectedLabelId(this.props.labelId);
+    this.props.setSelectedMemoId(this.props.memoId);
+  }
+
   updateMemoTitle = (memoId, changedMemoTitle) => {
+    if (!changedMemoTitle) return;
+
     this.props.requestUpdateMemo(memoId, changedMemoTitle);
   }
 

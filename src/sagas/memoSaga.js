@@ -13,6 +13,7 @@ import {
   updateMemo,
   deleteMemo,
 } from '../apis/memos';
+import history from '../history';
 
 function* workCreateMemo(action) {
   try {
@@ -63,9 +64,13 @@ function* workUpdateMemo(action) {
 
 function* workDeleteMemo(action) {
   try {
-    const { data } = yield call(deleteMemo, action.payload);
-    console.log('res', data);
-    yield put(fromMemo.successDeleteMemo(data))
+    const res = yield call(deleteMemo, action.payload);
+    yield put(fromMemo.successDeleteMemo());
+
+    yield put(fromMemo.requestMemosList());
+    yield put(fromLabel.requestLabelsList());
+
+    yield history.goBack();
   } catch (e) {
     console.log('errored at workDeleteMemo -', e);
     yield put(fromMemo.failureDeleteMemo(e))

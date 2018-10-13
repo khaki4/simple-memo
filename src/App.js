@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom'
+import history from './history';
 import LabelList from './screens/LabelList';
 import LabelMemo from './screens/LabelMemo';
 import MemoDetail from './screens/MemoDetail';
@@ -9,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        <Router history={history}>
           <div className="simple-memo">
             <LabelList />
             <Route

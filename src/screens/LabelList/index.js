@@ -28,9 +28,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     requestAddMemo: (labelId, memoIds) => {
       dispatch(fromLabel.requestAddMemo(labelId, memoIds))
     },
-    setSelectedLabelId: (labelId) => {
-      dispatch(fromLabel.setSelectedLabelId(labelId))
-    },
   };
 };
 
