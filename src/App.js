@@ -15,7 +15,7 @@ class App extends Component {
           <div className="simple-memo">
             <LabelList />
             <Route
-              path="/labels/:labelId/"
+              path="/labels/:labelId/:memos?/:memoId?"
               component={LabelMemo}
             />
             <Route
