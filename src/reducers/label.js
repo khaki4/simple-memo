@@ -73,7 +73,7 @@ const _successLabelsList = (_action, _draft) => {
 };
 const _successCreateLabel = (_action, _draft) => {
   _draft.labelsList.push(_action.payload);
-  _draft.labelsListById = _keyBy(_draft.labelsList, '_id');
+  _draft.labelsListById._action.payload._id = _action.payload;
 };
 const _setSelectedLabelId = (_action, _draft) => {
   _draft.selectedLabelId = _action.payload;
