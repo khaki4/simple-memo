@@ -29,7 +29,6 @@ export const REQUEST_CREATE_AND_ADD_MEMO = `${BASE_PREFIX}REQUEST_CREATE_AND_ADD
 export const SUCCESS_CREATE_AND_ADD_MEMO = `${BASE_PREFIX}SUCCESS_CREATE_AND_ADD_MEMO`;
 export const FAILURE_CREATE_AND_ADD_MEMO = `${BASE_PREFIX}FAILURE_CREATE_AND_ADD_MEMO`;
 
-export const SET_CHECKED_MEMOS_IDS = `${BASE_PREFIX}SET_CHECKED_MEMOS_IDS`;
 export const SET_SELECTED_MEMOS_ID = `${BASE_PREFIX}SET_SELECTED_MEMOS_ID`;
 
 // Action Creators
@@ -57,7 +56,6 @@ export const requestCreateAndAddMemo = (labelId, title, content) => ({ type: REQ
 export const successCreateAndAddMemo = (payload) => ({ type: SUCCESS_CREATE_AND_ADD_MEMO, payload });
 export const failureCreateAndAddMemo = (payload) => ({ type: FAILURE_CREATE_AND_ADD_MEMO, payload });
 
-export const setCheckedMemosIds = (payload) => ({ type: SET_CHECKED_MEMOS_IDS, payload });
 export const setSelectedMemoId = (memoId) => ({ type: SET_SELECTED_MEMOS_ID, payload: memoId });
 
 // helper function
@@ -84,8 +82,6 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
       case SUCCESS_MEMOS_LIST:
         return _successMemosList(action, draft);
-      case SET_CHECKED_MEMOS_IDS:
-        return _setCheckedMemosIds(action, draft);
       case SET_SELECTED_MEMOS_ID:
         return _setSelectedMemoId(action, draft);
       default:
