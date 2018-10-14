@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import history from './history';
 import LabelList from './screens/LabelList';
 import LabelMemo from './screens/LabelMemo';
@@ -10,10 +10,13 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App simple-memo">
         <Router history={history}>
-          <div className="simple-memo">
-            <LabelList />
+          <>
+            <Route
+              path="/"
+              component={LabelList}
+            />
             <Route
               path="/labels/:labelId/:memos?/:memoId?"
               component={LabelMemo}
@@ -28,7 +31,7 @@ class App extends Component {
               path="/labels/:labelId/memos/create"
               component={MemoCreate}
             />
-          </div>
+          </>
         </Router>
       </div>
     );
