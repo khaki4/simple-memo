@@ -20,10 +20,10 @@ function* workCreateMemo(action) {
   try {
     const { data } = yield call(createMemo, action.payload);
     console.log('res', data);
-    yield put(fromMemo.successCreateMemo(data))
+    yield put(fromMemo.successCreateMemo(data));
   } catch (e) {
     console.log('errored at workCreateMemo -', e);
-    yield put(fromMemo.failureCreateMemo(e))
+    yield put(fromMemo.failureCreateMemo(e));
   }
 }
 
@@ -31,10 +31,10 @@ function* workMemosList(action) {
   try {
     const { data } = yield call(getMemos);
     console.log('res', data);
-    yield put(fromMemo.successMemosList(data))
+    yield put(fromMemo.successMemosList(data));
   } catch (e) {
     console.log('errored at workMemosList -', e);
-    yield put(fromMemo.failureMemosList(e))
+    yield put(fromMemo.failureMemosList(e));
   }
 }
 
@@ -42,10 +42,10 @@ function* workMemoById(action) {
   try {
     const { data } = yield call(getMemoById, action.payload);
     console.log('res', data);
-    yield put(fromMemo.successMemoById(data))
+    yield put(fromMemo.successMemoById(data));
   } catch (e) {
     console.log('errored at workMemoById -', e);
-    yield put(fromMemo.failureMemoById(e))
+    yield put(fromMemo.failureMemoById(e));
   }
 }
 
@@ -74,7 +74,7 @@ function* workDeleteMemo(action) {
     yield history.goBack();
   } catch (e) {
     console.log('errored at workDeleteMemo -', e);
-    yield put(fromMemo.failureDeleteMemo(e))
+    yield put(fromMemo.failureDeleteMemo(e));
   }
 }
 
@@ -87,6 +87,7 @@ function* createAndAddMemoFlow(action) {
     const createMemoAction = yield take([fromMemo.SUCCESS_CREATE_MEMO, fromMemo.FAILURE_CREATE_MEMO]);
     if (createMemoAction.type === fromMemo.FAILURE_CREATE_MEMO) {
       yield createMemoTask.cancel();
+      yield put(fromMemo.failureCreateAndAddMemo());
       return;
     }
 
@@ -96,6 +97,7 @@ function* createAndAddMemoFlow(action) {
     const addMemoAction = yield take([fromLabel.SUCCESS_ADD_MEMO, fromLabel.FAILURE_ADD_MEMO]);
     if (addMemoAction.type === fromLabel.FAILURE_ADD_MEMO) {
       yield addMemoTask.cancel();
+      yield put(fromMemo.failureCreateAndAddMemo());
       return;
     }
 
@@ -105,7 +107,7 @@ function* createAndAddMemoFlow(action) {
     yield put(fromMemo.successCreateAndAddMemo());
   } catch (e) {
     console.log('errored at createAndAddMemoFlow -', e);
-    yield put(fromMemo.failureCreateAndAddMemo())
+    yield put(fromMemo.failureCreateAndAddMemo());
   }
 }
 

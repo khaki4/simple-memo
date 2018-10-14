@@ -56,7 +56,7 @@ function* workUpdateLabel(action) {
     yield put(fromLabel.successUpdateLabel(data));
   } catch (e) {
     console.log('errored at workUpdateLabel -', e);
-    yield put(fromLabel.failureUpdateLabel(e))
+    yield put(fromLabel.failureUpdateLabel(e));
   }
 }
 
