@@ -5,7 +5,6 @@ import * as fromMemo from '../../reducers/memo';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    memosList: state.memo.memosList,
     checkedMemoIds: state.memo.checkedMemoIds,
     selectedMemoId: state.memo.selectedMemoId,
     labelList: state.label.labelsListById,
