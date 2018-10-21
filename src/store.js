@@ -17,6 +17,15 @@ const sagaMiddleware = createSagaMiddleware();
 const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
 const store = createStore(rootReducer, enhancer);
 
+if (process.env.NODE_ENV !== 'production') {
+  if (module.hot) {
+    module.hot.accept('./reducers/rootReducer', () => {
+      store.replaceReducer(rootReducer);
+    });
+  }
+}
+
 export default store;
+
 
 sagaMiddleware.run(rootSaga);
