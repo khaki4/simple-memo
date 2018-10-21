@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom';
 import history from './history';
 import LabelList from './screens/LabelList';
 import LabelMemo from './screens/LabelMemo';
